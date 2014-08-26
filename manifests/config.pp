@@ -8,7 +8,7 @@ define memcached::config(
   $listen         = false,
   $connections    = 1024,
 ) {
-  file { "/etc/memcached_${name}.conf":
-    content => template('memcached/memcached.conf.erb'),
+  file { $memcached::params::config_file:
+    content => template($memcached::params::template_file),
   }
 }
