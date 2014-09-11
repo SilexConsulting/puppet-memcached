@@ -8,10 +8,10 @@
 #   Explanation of what this parameter affects and what it defaults to.
 #
 class memcached (
-  $port           = 11211,
-  $memory         = 128,
-  $listen         = false,
-  $connections    = 1024,
+  $port           = $memcached::params::port,
+  $memory         = $memcached::params::memory,
+  $listen         = $memcached::params::listen,
+  $connections    = $memcached::params::connections,
 ) inherits memcached::params {
 
   # validate parameters here
@@ -23,7 +23,6 @@ class memcached (
     listen      => $listen,
     connections => $connections,
   } ~>
-  class {"memcached::service": }
-
+  class { 'memcached::service': }
 
 }

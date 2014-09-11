@@ -8,6 +8,7 @@ define memcached::config(
   $listen         = false,
   $connections    = 1024,
 ) {
+
   file { $memcached::params::config_file:
     content => template($memcached::params::template_file),
   }
