@@ -9,7 +9,16 @@ define memcached::config(
   $connections    = 1024,
 ) {
 
-  file { $memcached::params::config_file:
+  case $::osfamily {
+    'Debian': {
+      $config_file    = "${memcached::params::config_path}/memcached_${name}.conf"
+    }
+    'RedHat', 'Amazon': {
+      $config_file    = "${memcached::params::config_path}/memcached"
+    }
+  }
+
+  file { $config_file:
     content => template($memcached::params::template_file),
   }
 }

@@ -13,11 +13,11 @@ class memcached::params {
 
   case $::osfamily {
     'Debian': {
-      $config_file    = "/etc/memcached_${name}.conf"
+      $config_path    = "/etc"
       $template_file  = 'memcached/memcached.conf.erb'
     }
     'RedHat', 'Amazon': {
-      $config_file    = '/etc/sysconfig/memcached'
+      $config_path    = '/etc/sysconfig'
       $template_file  = 'memcached/memcached.redhat.erb'
     }
     default: {
